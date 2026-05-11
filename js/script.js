@@ -725,8 +725,6 @@ window.cropImage = function() {
   showToast('Crop mode enabled');
 };
 
-
-
 function fileToDataURL(file) {
 
   return new Promise(resolve => {
@@ -739,3 +737,4 @@ function fileToDataURL(file) {
     reader.readAsDataURL(file);
   });
 }
+
