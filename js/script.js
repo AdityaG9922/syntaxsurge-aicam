@@ -2,6 +2,7 @@
    SYNTAX SURGE — CORE SCRIPT
    Created by Aditya
    ============================================= */
+let cropper;
 
 'use strict';
 
@@ -652,3 +653,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // Landmark
   initUploadZone('landmark-upload-zone', 'landmark-file-input', 'landmark-preview');
 });
+window.cropImage = function() {
+
+  const img =
+    document.querySelector('#lens-preview img');
+
+  if (!img || !img.src) {
+
+    showToast('Upload image first');
+
+    return;
+  }
+
+  if (cropper) {
+
+    cropper.destroy();
+  }
+
+  cropper = new Cropper(img, {
+
+    aspectRatio: NaN,
+    viewMode: 1,
+    autoCropArea: 1,
+    responsive: true,
+    background: false
+  });
+
+  showToast('Crop mode enabled');
+};
