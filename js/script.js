@@ -566,27 +566,74 @@ window.runDetection = function() {
 };
 
 /* ── SPECIES ID ─────────────────────────────── */
-window.runSpeciesID = function() {
-  const previewBox = document.getElementById('species-preview');
-  if (!previewBox || !previewBox.classList.contains('show')) { showToast('Upload an image first'); return; }
-  const btn = document.getElementById('species-btn');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Identifying...'; }
+window.runSpeciesID = async function() {
 
-  const results = [
-    { name: 'Monstera deliciosa', common: 'Swiss Cheese Plant', type: 'plant', conf: 92, info: 'A popular tropical houseplant native to southern Mexico and Panama. Known for its iconic split leaves and easy care requirements.' },
-    { name: 'Canis lupus familiaris', common: 'Domestic Dog', type: 'animal', conf: 96, info: 'Man\'s most versatile companion. Descended from wolves through thousands of years of selective domestication.' },
-    { name: 'Ficus lyrata', common: 'Fiddle Leaf Fig', type: 'plant', conf: 88, info: 'A striking indoor tree with large, violin-shaped leaves. Originally from the tropical rainforests of western Africa.' },
-    { name: 'Columba livia', common: 'Rock Pigeon', type: 'bird', conf: 85, info: 'One of the world\'s most widely distributed bird species. The ancestral species of all domestic pigeons.' },
-  ];
-  const pick = results[Math.floor(Math.random() * results.length)];
+  const previewBox =
+    document.getElementById('species-preview');
 
-  setTimeout(() => {
-    setIDResult('species-result', pick);
-    if (btn) { btn.disabled = false; btn.textContent = 'Re-identify'; }
+  if (!previewBox ||
+      !previewBox.classList.contains('show')) {
+
+    showToast('Upload an image first');
+
+    return;
+  }
+
+  const img =
+    previewBox.querySelector('img');
+
+  const btn =
+    document.getElementById('species-btn');
+
+  if (btn) {
+
+    btn.disabled = true;
+
+    btn.innerHTML =
+      '<span class="spinner"></span> Identifying...';
+  }
+
+  try {
+
+    const model =
+      await mobilenet.load();
+
+    const predictions =
+      await model.classify(img);
+
+    const best =
+      predictions[0];
+
+    setIDResult('species-result', {
+
+      name: best.className,
+
+      common: 'AI Identified Species',
+
+      type: 'species',
+
+      conf: Math.round(best.probability * 100),
+
+      info:
+        'Detected using TensorFlow MobileNet AI classification.'
+    });
+
     showToast('Species identified');
-  }, 2500);
-};
+  }
+  catch(error) {
 
+    console.error(error);
+
+    showToast('Identification failed');
+  }
+
+  if (btn) {
+
+    btn.disabled = false;
+
+    btn.textContent = 'Re-identify';
+  }
+};
 /* ── LANDMARK ID ────────────────────────────── */
 window.runLandmarkID = function() {
   const previewBox = document.getElementById('landmark-preview');
