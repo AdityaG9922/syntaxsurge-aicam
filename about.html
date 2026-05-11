@@ -136,13 +136,13 @@
       <div class="footer-copy">Built by Aditya &middot; 2025</div>
     </div>
 
-  <div class="tool-workspace reveal" style="margin-top:40px">
+<div class="tool-workspace reveal" style="margin-top:50px">
 
   <div class="result-panel show">
 
     <div class="result-panel-header">
 
-      <h4>Feedback & Support</h4>
+      <h4>Send Feedback</h4>
 
       <span
         style="
@@ -150,44 +150,60 @@
         font-size:10px;
         color:var(--neon)">
 
-        COMMUNITY
+        DIRECT SUPPORT
       </span>
 
     </div>
 
     <div class="result-panel-body">
 
-      <p
-        style="
-        font-family:var(--font-mono);
-        font-size:13px;
-        color:var(--text-dim);
-        line-height:1.8">
+      <form
+        action="mailto:yourgmail@gmail.com"
+        method="POST"
+        enctype="text/plain">
 
-        Found a bug? Have ideas for new AI tools?
-        Send your feedback directly to the creator.
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          class="ocr-textarea"
+          style="margin-bottom:14px;height:52px"
+          required>
 
-      </p>
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          class="ocr-textarea"
+          style="margin-bottom:14px;height:52px"
+          required>
 
-      <div
-        class="action-row"
-        style="margin-top:20px">
+        <textarea
+          name="message"
+          placeholder="Write your feedback..."
+          class="ocr-textarea"
+          required></textarea>
 
-        <a
-          href="mailto:adig776925@gmail.com?subject=Syntax%20Surge%20Feedback"
-          class="btn-primary">
+        <div
+          class="action-row"
+          style="margin-top:18px">
 
-          Send Feedback
-        </a>
+          <button
+            type="submit"
+            class="btn-primary">
 
-      </div>
+            Send Feedback
+          </button>
+
+        </div>
+
+      </form>
 
     </div>
 
   </div>
 
-</div>
-  
+</div>  
   </footer>
 </div>
 
