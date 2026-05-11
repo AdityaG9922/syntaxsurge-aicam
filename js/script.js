@@ -274,55 +274,93 @@ function initUploadZone(zoneId, inputId, previewId, onFile) {
 }
 
 /* ── AI ANALYSIS (Lens page) ────────────────── */
-window.runLensAnalysis = function() {
+window.runLensAnalysis = async function() {
+
   const previewBox = document.getElementById('lens-preview');
   const resultPanel = document.getElementById('lens-result');
   const img = previewBox ? previewBox.querySelector('img') : null;
+
   if (!previewBox || !previewBox.classList.contains('show') || !img || !img.src) {
-    showToast('Please upload an image first'); return;
+
+    showToast('Please upload an image first');
+
+    return;
   }
 
   const overlay = previewBox.querySelector('.scan-overlay');
+
   if (overlay) overlay.classList.add('active');
+
   const btn = document.getElementById('lens-analyze-btn');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Analyzing...'; }
 
-  setTimeout(() => {
-    if (overlay) overlay.classList.remove('active');
-    if (btn) { btn.disabled = false; btn.textContent = 'Re-analyze'; }
+  if (btn) {
 
-    // Build result from image analysis simulation
-    const labels = ['photograph', 'outdoor', 'nature', 'landscape', 'architecture',
-                    'person', 'text', 'object', 'technology', 'digital media', 'art'];
-    const picked = shuffleArr(labels).slice(0, Math.floor(Math.random() * 4) + 4);
-    const highConf = picked.slice(0, 2);
+    btn.disabled = true;
 
-    const tagContainer = document.getElementById('lens-tags');
-    if (tagContainer) {
-      tagContainer.innerHTML = '';
-      highConf.forEach(tag => {
-        const t = document.createElement('span');
-        t.className = 'tag high'; t.textContent = tag;
-        tagContainer.appendChild(t);
-      });
-      picked.slice(2).forEach(tag => {
-        const t = document.createElement('span');
-        t.className = 'tag'; t.textContent = tag;
-        tagContainer.appendChild(t);
-      });
+    btn.innerHTML =
+      '<span class="spinner"></span> Analyzing...';
+  }
+
+  try {
+
+    const model = await cocoSsd.load();
+
+    const predictions = await model.detect(img);
+
+    const tagContainer =
+      document.getElementById('lens-tags');
+
+    tagContainer.innerHTML = '';
+
+    predictions.forEach(pred => {
+
+      const t = document.createElement('span');
+
+      t.className = 'tag high';
+
+      t.textContent =
+        pred.class +
+        ' ' +
+        Math.round(pred.score * 100) +
+        '%';
+
+      tagContainer.appendChild(t);
+    });
+
+    const descEl =
+      document.getElementById('lens-desc');
+
+    if (predictions.length > 0) {
+
+      descEl.textContent =
+        'AI successfully detected objects from the uploaded image.';
+    }
+    else {
+
+      descEl.textContent =
+        'No recognizable objects detected.';
     }
 
-    const descEl = document.getElementById('lens-desc');
-    const descs = [
-      'Visual content detected. Scene complexity is high with multiple regions of interest identified across the frame.',
-      'Image analysis complete. Primary subject detected with strong edge definition and clear semantic regions.',
-      'Scene parsed. Background elements segmented from foreground. Dominant colour palette extracted.'
-    ];
-    if (descEl) descEl.textContent = descs[Math.floor(Math.random() * descs.length)];
+    resultPanel.classList.add('show');
 
-    if (resultPanel) resultPanel.classList.add('show');
     showToast('Analysis complete');
-  }, 2800);
+
+  }
+  catch(error) {
+
+    console.error(error);
+
+    showToast('AI detection failed');
+  }
+
+  if (overlay) overlay.classList.remove('active');
+
+  if (btn) {
+
+    btn.disabled = false;
+
+    btn.textContent = 'Re-analyze';
+  }
 };
 
 /* ── OCR ─────────────────────────────────────── */
