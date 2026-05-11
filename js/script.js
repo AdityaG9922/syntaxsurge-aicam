@@ -485,7 +485,7 @@ window.exportPDF = async function() {
     }
 
     pdf.addImage(
-      img,
+      imgData,
       'JPEG',
       0,
       0,
