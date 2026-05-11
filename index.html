@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syntax Surge — AI Vision Platform</title>
+  <meta name="description" content="Futuristic AI experimentation platform with vision scanning, OCR, object detection and more. Built by Aditya." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- CANVAS BACKGROUND -->
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="scanlines"></div>
+
+<!-- CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="cursor-trail-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/logo.jpeg" alt="Syntax Surge" class="nav-logo-img" /> Syntax Surge</a>
+  <ul class="nav-links">
+    <li><a href="lens.html">Lens</a></li>
+    <li><a href="ocr.html">OCR</a></li>
+    <li><a href="pdf.html">PDF</a></li>
+    <li><a href="object-detect.html">Detect</a></li>
+    <li><a href="species-id.html">Species</a></li>
+    <li><a href="landmark.html">Landmark</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="lens.html" class="nav-cta">Open Scanner</a>
+  <button class="nav-hamburger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobile-nav-overlay" class="mobile-nav-overlay">
+  <a href="lens.html">Lens Scanner</a>
+  <a href="ocr.html">OCR Extract</a>
+  <a href="pdf.html">Scan to PDF</a>
+  <a href="object-detect.html">Object Detect</a>
+  <a href="species-id.html">Species ID</a>
+  <a href="landmark.html">Landmark</a>
+  <a href="about.html">About</a>
+</div>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="hero-inner">
+      <div class="hero-logo-wrap">
+        <img src="assets/logo.jpeg" alt="Syntax Surge Logo" class="hero-logo-img" />
+      </div>
+
+      <div class="hero-badge">
+        <span class="dot"></span>
+        v2.4.1 · AI Runtime Active
+      </div>
+
+      <h1 class="hero-h1">
+        See what<br>
+        <span class="accent">machines</span>
+        <span class="line2">see</span>
+      </h1>
+
+      <p class="hero-sub">
+        A developer-grade AI vision toolkit. Scan, identify, extract — all in the browser. No cloud. No subscriptions. Just raw capability.
+      </p>
+
+      <div class="hero-actions">
+        <a href="lens.html" class="btn-primary">Launch Scanner</a>
+        <a href="about.html" class="btn-ghost">Read the Docs</a>
+      </div>
+
+      <!-- TERMINAL -->
+      <div class="terminal-wrap">
+        <div class="terminal-bar">
+          <span class="t-dot r"></span>
+          <span class="t-dot y"></span>
+          <span class="t-dot g"></span>
+          <span class="t-title">syntax-surge · terminal v2.4</span>
+        </div>
+        <div class="terminal-body" id="terminal-output"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-header reveal">
+        <div class="section-label">Capabilities</div>
+        <h2>Six tools.<br>One interface.</h2>
+        <p>Each module handles a different layer of visual intelligence. Use them standalone or chain them together.</p>
+      </div>
+
+      <div class="features-bento">
+
+        <!-- Big card: Lens -->
+        <div class="feat-card wide reveal">
+          <div class="feat-icon">🔍</div>
+          <div class="feat-title">AI Lens Scanner</div>
+          <div class="feat-desc">Upload any image and let the vision engine break it down into semantic tags, labels, and descriptors — similar to how Google Lens works, but running entirely in your browser.</div>
+          <div class="feat-card-preview">
+            <div class="preview-bar">
+              <span class="pb-1"></span><span class="pb-2"></span><span class="pb-3"></span>
+            </div>
+            <div class="preview-tags">
+              <span>architecture</span><span>outdoor</span><span>landscape</span>
+              <span>natural light</span><span>urban</span>
+            </div>
+          </div>
+          <a href="lens.html" class="feat-link">Open Lens <span class="feat-link-icon">→</span></a>
+        </div>
+
+        <!-- Tall card: OCR -->
+        <div class="feat-card tall reveal" style="transition-delay:0.1s">
+          <div class="feat-icon">📄</div>
+          <div class="feat-title">Text Extraction</div>
+          <div class="feat-desc">Powered by Tesseract.js. Upload a photo of any document, sign, or whiteboard and get clean extracted text you can edit and copy.</div>
+          <a href="ocr.html" class="feat-link">Extract Text <span class="feat-link-icon">→</span></a>
+        </div>
+
+        <!-- Half: Object Detect -->
+        <div class="feat-card half reveal" style="transition-delay:0.15s">
+          <div class="feat-icon">📦</div>
+          <div class="feat-title">Object Detection</div>
+          <div class="feat-desc">Draws bounding boxes over detected objects with confidence scores rendered directly on the canvas.</div>
+          <a href="object-detect.html" class="feat-link">Detect Objects <span class="feat-link-icon">→</span></a>
+        </div>
+
+        <!-- Half: PDF -->
+        <div class="feat-card half reveal" style="transition-delay:0.2s">
+          <div class="feat-icon">🖨️</div>
+          <div class="feat-title">Scan → PDF</div>
+          <div class="feat-desc">Turn any image into a clean, downloadable PDF. Useful for digitising physical documents on mobile.</div>
+          <a href="pdf.html" class="feat-link">Make PDF <span class="feat-link-icon">→</span></a>
+        </div>
+
+        <!-- Third: Species -->
+        <div class="feat-card third reveal" style="transition-delay:0.25s">
+          <div class="feat-icon">🌿</div>
+          <div class="feat-title">Species ID</div>
+          <div class="feat-desc">Plant and animal identification with confidence scoring.</div>
+          <a href="species-id.html" class="feat-link">Identify <span class="feat-link-icon">→</span></a>
+        </div>
+
+        <!-- Third: Landmark -->
+        <div class="feat-card third reveal" style="transition-delay:0.3s">
+          <div class="feat-icon">🏛️</div>
+          <div class="feat-title">Landmark</div>
+          <div class="feat-desc">Recognise famous buildings and structures worldwide.</div>
+          <a href="landmark.html" class="feat-link">Recognise <span class="feat-link-icon">→</span></a>
+        </div>
+
+        <!-- Third: Mobile -->
+        <div class="feat-card third reveal" style="transition-delay:0.35s">
+          <div class="feat-icon">📷</div>
+          <div class="feat-title">Camera Ready</div>
+          <div class="feat-desc">All tools support live camera capture on mobile. No app install.</div>
+          <a href="lens.html" class="feat-link">Try Live <span class="feat-link-icon">→</span></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-num" data-target="6" data-suffix="">0</span>
+          <span class="stat-label">AI Modules</span>
+        </div>
+        <div class="stat-item reveal" style="transition-delay:0.1s">
+          <span class="stat-num" data-target="100" data-suffix="%">0</span>
+          <span class="stat-label">Client-side</span>
+        </div>
+        <div class="stat-item reveal" style="transition-delay:0.2s">
+          <span class="stat-num" data-target="0" data-suffix=" APIs">0</span>
+          <span class="stat-label">External Calls</span>
+        </div>
+        <div class="stat-item reveal" style="transition-delay:0.3s">
+          <span class="stat-num" data-target="1" data-suffix=" dev">0</span>
+          <span class="stat-label">Solo Built</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <h2>Ready to scan?</h2>
+        <p>Drop an image and watch the machine think. All processing happens locally — your files never leave the device.</p>
+        <div class="cta-actions">
+          <a href="lens.html" class="btn-primary">Open AI Lens</a>
+          <a href="ocr.html" class="btn-ghost">Try OCR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/logo.jpeg" alt="SS" class="footer-logo-img" /> <span class="accent">Syntax</span> Surge</div>
+      <div class="footer-links">
+        <a href="lens.html">Lens</a>
+        <a href="ocr.html">OCR</a>
+        <a href="pdf.html">PDF</a>
+        <a href="object-detect.html">Detect</a>
+        <a href="species-id.html">Species</a>
+        <a href="landmark.html">Landmark</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-copy">Built by Aditya &middot; 2025</div>
+    </div>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<script src="js/script.js"></script>
+</body>
+</html>

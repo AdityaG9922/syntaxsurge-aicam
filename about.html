@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Syntax Surge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="scanlines"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="cursor-trail-canvas"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/logo.jpeg" alt="Syntax Surge" class="nav-logo-img" /> Syntax Surge</a>
+  <ul class="nav-links">
+    <li><a href="lens.html">Lens</a></li>
+    <li><a href="ocr.html">OCR</a></li>
+    <li><a href="pdf.html">PDF</a></li>
+    <li><a href="object-detect.html">Detect</a></li>
+    <li><a href="species-id.html">Species</a></li>
+    <li><a href="landmark.html">Landmark</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="lens.html" class="nav-cta">Launch Tool</a>
+  <button class="nav-hamburger" id="nav-burger"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobile-nav-overlay" class="mobile-nav-overlay">
+  <a href="lens.html">Lens</a><a href="ocr.html">OCR</a><a href="pdf.html">PDF</a>
+  <a href="object-detect.html">Detect</a><a href="species-id.html">Species</a>
+  <a href="landmark.html">Landmark</a><a href="about.html">About</a>
+</div>
+
+<div class="page-wrap">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="about-section">
+
+    <div class="about-hero reveal">
+      <div class="section-label" style="justify-content:center">Project</div>
+      <h1>Built for <span>curiosity</span></h1>
+      <p>Syntax Surge is a personal AI experimentation platform — a collection of browser-based vision tools built from scratch to explore what's possible with modern web APIs and open-source AI libraries.</p>
+    </div>
+
+    <div class="about-card reveal">
+      <h3>The Idea</h3>
+      <p>I wanted to build something that felt like a real tool — not a demo, not a tutorial project. Something that's actually useful when you're standing in front of a plant you don't recognise, or trying to digitise a handwritten receipt, or just curious what an AI "sees" when it looks at your photo.</p>
+      <p style="margin-top:12px">Every module runs entirely in the browser. Nothing is sent to a server. Your images never leave your device.</p>
+    </div>
+
+    <div class="about-card reveal" style="transition-delay:0.1s">
+      <h3>How It Works</h3>
+      <p>Syntax Surge is built with plain HTML, CSS, and JavaScript — no frameworks, no build tools. Each AI capability is powered by an open-source library loaded on demand so the initial page loads fast.</p>
+      <p style="margin-top:12px">The visual design was handcrafted from scratch. Every animation, cursor effect, and layout decision was written by hand.</p>
+    </div>
+
+    <div class="about-card reveal" style="transition-delay:0.15s">
+      <h3>Tech Stack</h3>
+      <p>The tools and libraries powering each module:</p>
+      <div class="tech-pills">
+        <span class="tech-pill">Tesseract.js — OCR</span>
+        <span class="tech-pill">jsPDF — PDF export</span>
+        <span class="tech-pill">Canvas API — Drawing</span>
+        <span class="tech-pill">MediaDevices API — Camera</span>
+        <span class="tech-pill">GSAP-ready — Animation</span>
+        <span class="tech-pill">Vanilla JS — Core</span>
+        <span class="tech-pill">CSS Custom Properties</span>
+        <span class="tech-pill">IntersectionObserver</span>
+      </div>
+    </div>
+
+    <div class="about-card reveal" style="transition-delay:0.2s">
+      <h3>Creator</h3>
+      <p>Built entirely by <strong style="color:var(--neon)">Aditya</strong> — a developer who believes good tools don't need to be complicated, just focused.</p>
+      <p style="margin-top:12px">Syntax Surge is an ongoing experiment. New modules get added when something interesting becomes possible in the browser.</p>
+      <div class="action-row" style="margin-top:20px">
+        <a href="lens.html" class="btn-primary">Try the Scanner</a>
+        <a href="index.html" class="btn-ghost">← Back Home</a>
+      </div>
+    </div>
+
+    <!-- Module directory -->
+    <div style="margin-top:60px" class="reveal">
+      <div class="section-label">All Modules</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:20px">
+        <a href="lens.html" class="feat-card" style="text-decoration:none">
+          <div class="feat-icon">🔍</div>
+          <div class="feat-title" style="font-size:15px">AI Lens</div>
+          <div class="feat-desc">Image semantic analysis</div>
+        </a>
+        <a href="ocr.html" class="feat-card" style="text-decoration:none">
+          <div class="feat-icon">📄</div>
+          <div class="feat-title" style="font-size:15px">OCR</div>
+          <div class="feat-desc">Text extraction</div>
+        </a>
+        <a href="pdf.html" class="feat-card" style="text-decoration:none">
+          <div class="feat-icon">🖨️</div>
+          <div class="feat-title" style="font-size:15px">Scan to PDF</div>
+          <div class="feat-desc">Image to document</div>
+        </a>
+        <a href="object-detect.html" class="feat-card" style="text-decoration:none">
+          <div class="feat-icon">📦</div>
+          <div class="feat-title" style="font-size:15px">Object Detect</div>
+          <div class="feat-desc">Bounding box detection</div>
+        </a>
+        <a href="species-id.html" class="feat-card" style="text-decoration:none">
+          <div class="feat-icon">🌿</div>
+          <div class="feat-title" style="font-size:15px">Species ID</div>
+          <div class="feat-desc">Flora and fauna</div>
+        </a>
+        <a href="landmark.html" class="feat-card" style="text-decoration:none">
+          <div class="feat-icon">🏛️</div>
+          <div class="feat-title" style="font-size:15px">Landmark</div>
+          <div class="feat-desc">World structures</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/logo.jpeg" alt="SS" class="footer-logo-img" /> <span class="accent">Syntax</span> Surge</div>
+      <div class="footer-links">
+        <a href="lens.html">Lens</a>
+        <a href="ocr.html">OCR</a>
+        <a href="pdf.html">PDF</a>
+        <a href="object-detect.html">Detect</a>
+        <a href="species-id.html">Species</a>
+        <a href="landmark.html">Landmark</a>
+      </div>
+      <div class="footer-copy">Built by Aditya &middot; 2025</div>
+    </div>
+  </footer>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
