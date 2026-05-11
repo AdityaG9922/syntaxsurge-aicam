@@ -78,13 +78,28 @@
         <div class="scan-corner sc-bl"></div>
         <div class="scan-corner sc-br"></div>
       </div>
-    </div>
+      </div>
 
     <!-- Analyse button -->
-    <div class="action-row reveal" style="margin-top:16px">
-      <button class="btn-primary" id="lens-analyze-btn" onclick="runLensAnalysis()">Analyse Image</button>
-    </div>
+  <!-- Analyse button -->
+<div class="action-row reveal" style="margin-top:16px">
 
+  <button
+    class="btn-primary"
+    id="lens-analyze-btn"
+    onclick="runLensAnalysis()">
+
+    Analyse Image
+  </button>
+
+  <button
+    class="btn-ghost"
+    onclick="cropImage()">
+
+    Crop Image
+  </button>
+
+</div>
     <!-- Result -->
     <div id="lens-result" class="result-panel">
       <div class="result-panel-header">
@@ -110,7 +125,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
